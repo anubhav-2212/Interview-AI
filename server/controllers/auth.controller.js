@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import BlackListToken from "../models/blackListToken.model.js";
 
-export const register = async (req, res) => {
+export const registerUserController = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         if (!username || !email || !password) {
@@ -36,7 +36,7 @@ export const register = async (req, res) => {
     }
 }
 
-export const login = async (req, res) => {
+export const loginUserController = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -67,7 +67,7 @@ export const login = async (req, res) => {
     }
 }
 
-export const logout = async (req, res) => {
+export const logoutUserController = async (req, res) => {
 
     try {
         const token = req.cookies.token;
@@ -80,5 +80,21 @@ export const logout = async (req, res) => {
         res.status(200).json({ message: "User logged out successfully" });
     } catch (error) {
         res.status(500).json({ message: "Error logging out user", error });
+    }
+}
+
+export const getMeController = async (req, res) => {
+    try {
+        const user = req.user.id;
+        res.status(200).json({
+            message: "User found successfully",
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error getting user", error });
     }
 }
