@@ -3,6 +3,7 @@ import BlackListToken from "../models/blackListToken.model.js";
 
 export const authMiddleware = async (req, res, next) => {
     const token = req.cookies.token;
+    console.log(token);
     if (!token) {
         return res.status(401).json({ message: "Token Not found" });
     }
