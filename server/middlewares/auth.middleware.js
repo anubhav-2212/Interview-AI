@@ -1,4 +1,4 @@
-import jwt from jsonwebtoken;
+import jwt from "jsonwebtoken";
 import BlackListToken from "../models/blackListToken.model.js";
 
 export const authMiddleware = async (req, res, next) => {
