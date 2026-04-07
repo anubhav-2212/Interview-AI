@@ -85,7 +85,10 @@ export const logoutUserController = async (req, res) => {
 
 export const getMeController = async (req, res) => {
     try {
-        const user = req.user.id;
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
         res.status(200).json({
             message: "User found successfully",
             user: {
