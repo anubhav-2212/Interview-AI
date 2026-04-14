@@ -13,3 +13,22 @@ import mongoose from "mongoose";
  }}]
  * -Preparation plan;[{day:Number,focus:String,task:[String]}] 
  *  */
+
+const interviewReportSchema = new mongoose.Schema({
+    jobDescription: {
+        type: String,
+        required: [true, "Job description is required"]
+    },
+    resumeText: {
+        type: String,
+    },
+    selfDescription: {
+        type: String,
+    },
+    matchScore: {
+        type: Number,
+        min: [0, "Match score cannot be less than 0"],
+        max: [100, "Match score cannot be greater than 100"]
+    },
+
+})
