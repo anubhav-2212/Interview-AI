@@ -14,6 +14,21 @@ import mongoose from "mongoose";
  * -Preparation plan;[{day:Number,focus:String,task:[String]}] 
  *  */
 
+const technicalQuestionSchema = new mongoose.Schema({
+    question: {
+        type: String,
+        required: [true, "Question is required"]
+    },
+    intent: {
+        type: String,
+        required: [true, "Intent is required"]
+    },
+    answer: {
+        type: String,
+        required: [true, "Answer is required"]
+    }
+})
+
 const interviewReportSchema = new mongoose.Schema({
     jobDescription: {
         type: String,
