@@ -20,4 +20,7 @@ app.use("/api/v1/auth", authRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-}); 
+});
+import { main } from "./Services/ai.service.js";
+main();
+
