@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 import { GoogleGenAI } from "@google/genai";
-import { json, z } from "zod";
+import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
 // The client gets the API key from the environment variable `GEMINI_API_KEY`.
@@ -43,16 +43,40 @@ const interviewReportSchema = z.object({
 async function generateInterviewReport({ jobDescription, resumeText, selfDescription }) {
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
-        contents: `Generate an interview report for the following job describe and resume text:
-        Job Description: ${jobDescription}
-        Resume Text: ${resumeText}
-        Self Description: ${selfDescription}`,
+        contents: `You are an expert AI Interview Coach.
+
+Analyze the candidate profile carefully.
+
+INPUT:
+
+Job Description:
+${jobDescription}
+
+Resume:
+${resumeText}
+
+Self Description:
+${selfDescription}
+
+TASK:
+
+Generate a structured interview report including:
+
+1. Job Title
+2. Match Score (0-100)
+3. 5 Technical Questions with intent + best answers
+4. 3 Behavioral Questions with intent + best answers
+5. Skill Gaps with severity
+6. 7 Day Preparation Plan
+
+Return only valid JSON.
+`,
         config: {
             responseMimeType: "application/json",
             responseSchema: zodToJsonSchema(interviewReportSchema),
         },
     });
-    console.log(JSON.parse(response.text))
+    return (JSON.parse(response.text))
 }
 export default generateInterviewReport;
 
