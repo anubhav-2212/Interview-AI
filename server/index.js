@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import cookieParser from "cookie-parser";
+import interviewRouter from "./routes/interview.routes.js";
 
 dotenv.config();
 
@@ -17,15 +18,10 @@ app.use(cookieParser());
 
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/interview", interviewRouter);
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-// import { main } from "./Services/ai.service.js";
-// main();
-import { resume } from "./Services/temp.js";
-import { jobDescription } from "./Services/temp.js";
-import { selfDescription } from "./Services/temp.js";
-import generateInterviewReport from "./Services/ai.service.js";
-generateInterviewReport({ jobDescription, resume, selfDescription });
 
