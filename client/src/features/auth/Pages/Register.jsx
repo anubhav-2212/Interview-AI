@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../hooks/auth.hooks.js";
+import toast, { Toaster } from "react-hot-toast";
+
 export default function InterviewAIRegister() {
     const { loading, handleRegister } = useAuth();
     const navigate = useNavigate();
@@ -14,13 +16,14 @@ export default function InterviewAIRegister() {
         e.preventDefault();
         try {
             await handleRegister({ username, email, password });
+            toast.success("Account created successfully!");
             navigate("/");
             if (loading) {
                 return <main><h1>Loading...</h1></main>
             }
         } catch (error) {
             console.log(error);
-
+            toast.error(error.response?.data?.message || "Registration failed. Please try again.");
         }
 
     }
@@ -29,6 +32,7 @@ export default function InterviewAIRegister() {
 
     return (
         <div className='min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white'>
+            <Toaster position="top-center" reverseOrder={false} />
             <nav className='sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl'>
                 <div className='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
                     <div className='text-2xl font-bold'>Interview<span className='text-indigo-400'>AI</span>
