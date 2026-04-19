@@ -2,6 +2,7 @@ import React from "react";
 import { useState, } from "react";
 import { useAuth } from "../hooks/auth.hooks.js";
 import { useNavigate } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function InterviewAILogin() {
     const { loading, handleLogin } = useAuth();
@@ -13,19 +14,21 @@ export default function InterviewAILogin() {
         e.preventDefault();
         try {
             await handleLogin({ email, password });
+            toast.success("Logged in successfully!");
             navigate("/");
             if (loading) {
                 return <main><h1>Loading...</h1></main>
             }
         } catch (error) {
             console.log(error);
-
+            toast.error(error.response?.data?.message || "Login failed. Please try again.");
         }
 
     }
 
     return (
         <div className='min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white'>
+            <Toaster position="top-center" reverseOrder={false} />
             <nav className='sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl'>
                 <div className='max-w-7xl mx-auto px-6 py-4 flex items-center justify-between'>
                     <div className='text-2xl font-bold'>Interview<span className='text-indigo-400'>AI</span>
