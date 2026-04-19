@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Login from "./features/auth/Pages/Login.jsx";
 import Register from "./features/auth/Pages/Register.jsx";
 import Home from "./features/Interview/Pages/Home.jsx";
+import InterviewAIReport from "./features/Interview/Pages/Interview.jsx";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />
 
+    },
+    {
+        path: "/interview",
+        element: <InterviewAIReport />
     }
+
 ]);
 
 export default router;
