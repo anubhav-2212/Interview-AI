@@ -243,41 +243,41 @@ Rules:
     } catch (error) {
         console.log(error);
 
-        return {
-            title: "Software Developer",
-            matchScore: 70,
+        // return {
+        //     title: "Software Developer",
+        //     matchScore: 70,
 
-            technicalQuestions: [
-                {
-                    question: "Explain React Hooks.",
-                    intent: "Check React fundamentals",
-                    answer: "Explain useState and useEffect with examples."
-                }
-            ],
+        //     technicalQuestions: [
+        //         {
+        //             question: "Explain React Hooks.",
+        //             intent: "Check React fundamentals",
+        //             answer: "Explain useState and useEffect with examples."
+        //         }
+        //     ],
 
-            behavioralQuestions: [
-                {
-                    question: "Tell me about yourself.",
-                    intent: "Assess communication",
-                    answer: "Give concise career summary."
-                }
-            ],
+        //     behavioralQuestions: [
+        //         {
+        //             question: "Tell me about yourself.",
+        //             intent: "Assess communication",
+        //             answer: "Give concise career summary."
+        //         }
+        //     ],
 
-            skillGaps: [
-                {
-                    skill: "System Design",
-                    severity: "medium"
-                }
-            ],
+        //     skillGaps: [
+        //         {
+        //             skill: "System Design",
+        //             severity: "medium"
+        //         }
+        //     ],
 
-            preparationPlan: [
-                {
-                    day: 1,
-                    focus: "DSA + Resume Review",
-                    task: ["Practice arrays", "Improve resume"]
-                }
-            ]
-        };
+        //     preparationPlan: [
+        //         {
+        //             day: 1,
+        //             focus: "DSA + Resume Review",
+        //             task: ["Practice arrays", "Improve resume"]
+        //         }
+        //     ]
+        // };
     }
 }
 
