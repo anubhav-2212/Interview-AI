@@ -22,10 +22,11 @@ export const loginAPI = async ({ email, password }) => {
         const response = await api.post("/login", { email, password }, {
             withCredentials: true
         })
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.log(error);
-        return error.response.data;
+        return error.response?.data || error.message;
     }
 }
 
@@ -50,6 +51,6 @@ export const getMeAPI = async () => {
     } catch (error) {
         console.log(error);
         return error.response.data;
-    } Me
+    }
 }
 

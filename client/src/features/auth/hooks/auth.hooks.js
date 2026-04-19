@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { loginAPI } from "../Services/auth.api.js";
+import { loginAPI, registerAPI, logoutAPI } from "../Services/auth.api.js";
 import { authContext } from "../auth.context.jsx";
 
 export const useAuth = () => {
@@ -11,10 +11,12 @@ export const useAuth = () => {
         try {
             const data = await loginAPI({ email, password });
             setUser(data.user);
-            setLoading(false);
         } catch (error) {
-            setLoading(false);
+            console.log(error);
             throw error;
+        }
+        finally {
+            setLoading(false);
         }
     }
     const handleRegister = async ({ username, email, password }) => {
@@ -22,10 +24,13 @@ export const useAuth = () => {
         try {
             const data = await registerAPI({ username, email, password });
             setUser(data.user);
-            setLoading(false);
         } catch (error) {
-            setLoading(false);
+            console.log(error);
             throw error;
+
+        }
+        finally {
+            setLoading(false);
         }
     }
     const handleLogout = async () => {
@@ -33,16 +38,19 @@ export const useAuth = () => {
         try {
             const data = await logoutAPI();
             setUser(null);
-            setLoading(false);
         } catch (error) {
-            setLoading(false);
+            console.log(error);
             throw error;
         }
+        finally {
+            setLoading(false);
+        }
     }
+
+    return { handleLogin, handleRegister, handleLogout, user, loading }
 }
 
 
-return { handleLogin, handleRegister, handleLogout, user, loading }
 
 
 
