@@ -17,29 +17,31 @@ export const useAuth = () => {
             throw error;
         }
     }
-}
-const handleRegister = async ({ username, email, password }) => {
-    setLoading(true);
-    try {
-        const data = await registerAPI({ username, email, password });
-        setUser(data.user);
-        setLoading(false);
-    } catch (error) {
-        setLoading(false);
-        throw error;
+    const handleRegister = async ({ username, email, password }) => {
+        setLoading(true);
+        try {
+            const data = await registerAPI({ username, email, password });
+            setUser(data.user);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            throw error;
+        }
+    }
+    const handleLogout = async () => {
+        setLoading(true);
+        try {
+            const data = await logoutAPI();
+            setUser(null);
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            throw error;
+        }
     }
 }
-const handleLogout = async () => {
-    setLoading(true);
-    try {
-        const data = await logoutAPI();
-        setUser(null);
-        setLoading(false);
-    } catch (error) {
-        setLoading(false);
-        throw error;
-    }
-}
+
+
 return { handleLogin, handleRegister, handleLogout, user, loading }
 
 
