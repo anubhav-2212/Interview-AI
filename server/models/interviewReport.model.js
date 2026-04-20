@@ -72,6 +72,10 @@ const preparationPlanSchema = new mongoose.Schema({
 }, { _id: false })
 
 const interviewReportSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "Title is required"]
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
