@@ -1,9 +1,9 @@
-import React from 'react'
-import './style.scss'
-import { RouterProvider } from 'react-router'
-import router from './app.routes'
-import { AuthProvider } from './features/auth/auth.context.jsx'
-import { InterviewProvider } from './features/Interview/Interview.context.jsx'
+import React from "react";
+import "./style.scss";
+import { RouterProvider } from "react-router";
+import router from "./app.routes";
+import { AuthProvider } from "./features/auth/auth.context.jsx";
+import { InterviewProvider } from "./features/Interview/Interview.context.jsx";
 function App() {
   return (
     <>
@@ -13,7 +13,7 @@ function App() {
         </InterviewProvider>
       </AuthProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
