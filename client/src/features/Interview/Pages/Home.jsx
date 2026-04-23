@@ -8,6 +8,19 @@ export default function InterviewAIHome() {
     const [selfDescription, setSelfDescription] = useState("");
     const [jobDescription, setJobDescription] = useState("");
 
+    const handleSubmit = async (e) => {
+        const resume = resumeInputRef.current.files[0];
+        e.preventDefault();
+        try {
+            await generateReport({ resume, selfDescription, jobDescription });
+            toast.success("Report generated successfully!");
+            navigate(`/interview/${data._id}`, { replace: true });
+        } catch (error) {
+            console.log(error);
+            toast.error(error.response?.data?.message || "Report generation failed. Please try again.");
+        }
+
+    }
 
 
     return (
@@ -58,7 +71,7 @@ export default function InterviewAIHome() {
                                 <label className='text-sm text-slate-300'>Job Description</label>
                                 <textarea onChange={(e) => setJobDescription(e.target.value)} rows='6' placeholder='Paste the company job description here...' className='mt-2 w-full rounded-xl border border-white/10 bg-white/5 p-3 outline-none focus:ring-2 focus:ring-indigo-400' />
                             </div>
-                            <button className='w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30'>Generate Questions</button>
+                            <button onClick={handleSubmit} className='w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30'>Generate Questions</button>
                             <p className='text-xs text-slate-400 text-center'>You will receive technical questions, HR questions, match score & prep plan.</p>
                         </div>
                     </div>
