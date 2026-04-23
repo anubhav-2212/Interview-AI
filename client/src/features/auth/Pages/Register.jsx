@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/auth.hooks.js";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -99,28 +99,28 @@ export default function InterviewAIRegister() {
                 className="mt-2 w-full rounded-2xl border border-white/10 bg-white/5 p-4 outline-none focus:ring-2 focus:ring-indigo-400"
               />
             </div>
-            <label className="flex items-start gap-2 text-sm text-slate-300">
+            {/* <label className="flex items-start gap-2 text-sm text-slate-300">
               <input type="checkbox" className="mt-1" /> I agree to the Terms &
               Privacy Policy
-            </label>
+            </label> */}
             <button
               onClick={handleSubmit}
               className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30"
             >
               Create Account
             </button>
-            <div className="grid grid-cols-2 gap-3">
+            {/* <div className="grid grid-cols-2 gap-3">
               <button className="rounded-2xl bg-white/5 hover:bg-white/10 py-3">
                 Google
               </button>
               <button className="rounded-2xl bg-white/5 hover:bg-white/10 py-3">
                 GitHub
               </button>
-            </div>
-            <p className="text-center text-slate-400 text-sm">
+            </div> */}
+            <Link to="/login">  <p className="text-center text-slate-400 text-sm">
               Already have an account?{" "}
               <span className="text-indigo-300 cursor-pointer">Login</span>
-            </p>
+            </p></Link>
           </div>
         </div>
       </div>
