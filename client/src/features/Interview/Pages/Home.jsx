@@ -16,8 +16,8 @@ export default function InterviewAIHome() {
     e.preventDefault();
     try {
       const data = await generateReport({ resume, selfDescription, jobDescription });
-      console.log(data._id);
-      console.log(data);
+    //   console.log(data._id);
+    //   console.log(data);
 
       toast.success("Report generated successfully!");
       navigate(`/interview/${data._id}`, { replace: true });
@@ -29,11 +29,15 @@ export default function InterviewAIHome() {
       );
     }
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+  if(loading){
+    <main className="loading-screen">
+        <h1>Loading your interview plan...</h1>
+    </main>
+  }
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">
+            <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="text-2xl font-bold">
             Interview<span className="text-indigo-400">AI</span>
           </div>
