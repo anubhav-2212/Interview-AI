@@ -17,10 +17,7 @@ export default function InterviewAIRegister() {
         try {
             await handleRegister({ username, email, password });
             toast.success("Account created successfully!");
-            navigate("/");
-            if (loading) {
-                return <main><h1>Loading...</h1></main>
-            }
+            navigate("/", { replace: true });
         } catch (error) {
             console.log(error);
             toast.error(error.response?.data?.message || "Registration failed. Please try again.");

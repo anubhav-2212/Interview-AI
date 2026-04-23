@@ -15,10 +15,8 @@ export default function InterviewAILogin() {
         try {
             await handleLogin({ email, password });
             toast.success("Logged in successfully!");
-            navigate("/");
-            if (loading) {
-                return <main><h1>Loading...</h1></main>
-            }
+            navigate("/", { replace: true });
+
         } catch (error) {
             console.log(error);
             toast.error(error.response?.data?.message || "Login failed. Please try again.");

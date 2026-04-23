@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { loginAPI, registerAPI, logoutAPI } from "../Services/auth.api.js";
 import { authContext } from "../auth.context.jsx";
+import { useNavigate } from "react-router";
 
 export const useAuth = () => {
     const context = useContext(authContext);
     const { user, loading, setUser, setLoading } = context;
 
     const handleLogin = async ({ email, password }) => {
-        setLoading(true);
+        setLoading(true)
         try {
             const data = await loginAPI({ email, password });
             setUser(data.user);
