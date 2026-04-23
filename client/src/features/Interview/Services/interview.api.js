@@ -15,7 +15,7 @@ export const generateInterviewReportApi = async ({
 }) => {
   const formData = new FormData();
   formData.append("jobDescription", jobDescription);
-  formData.append("resumeFile", resumeFile);
+  formData.append("resume", resumeFile);
   formData.append("selfDescription", selfDescription);
   const response = await api.post("/", formData, {
     headers: {

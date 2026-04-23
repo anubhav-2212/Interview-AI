@@ -12,25 +12,27 @@ export const useInterview = () => {
   if (!context) {
     throw new Error("useInterview must be used within InterviewProvider");
   }
-  const { loading, setLoading, report, setReport, reports, setReports } =
+  const { loading, setLoading, report, setReport, allReports, setAllReports } =
     context;
 
-  const generateReport = async (
+  const generateReport = async ({
     jobDescription,
     selfDescription,
-    resumeFile,
-  ) => {
+    resume,
+  }) => {
     setLoading(true);
     try {
-      const response = await generateInterviewReportApi(
+      const response = await generateInterviewReportApi({
         jobDescription,
         selfDescription,
-        resumeFile,
-      );
-      setReport(response.in);
-      console.log(response);
+        resumeFile: resume,
+      });
+      setReport(response.data);
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       console.log(error);
+      throw error;
     } finally {
       setLoading(false);
     }
@@ -49,8 +51,8 @@ export const useInterview = () => {
   const getReports = async () => {
     setLoading(true);
     try {
-      const response = await getInterviewReportsApi();
-      setReports(response.data);
+      const response = await getAllInterviewReportsApi();
+      setAllReports(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -63,6 +65,6 @@ export const useInterview = () => {
     getReports,
     loading,
     report,
-    reports,
+    allReports,
   };
 };

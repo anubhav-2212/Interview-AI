@@ -1,10 +1,13 @@
 import React from "react";
 import { useInterview } from "../hooks/useInterview.js";
 import { useState, useRef } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 export default function InterviewAIHome() {
   const { loading, generateReport } = useInterview();
   const resumeInputRef = useRef();
+  const navigate = useNavigate();
   const [selfDescription, setSelfDescription] = useState("");
   const [jobDescription, setJobDescription] = useState("");
 
@@ -12,7 +15,10 @@ export default function InterviewAIHome() {
     const resume = resumeInputRef.current.files[0];
     e.preventDefault();
     try {
-      await generateReport({ resume, selfDescription, jobDescription });
+      const data = await generateReport({ resume, selfDescription, jobDescription });
+      console.log(data._id);
+      console.log(data);
+
       toast.success("Report generated successfully!");
       navigate(`/interview/${data._id}`, { replace: true });
     } catch (error) {
