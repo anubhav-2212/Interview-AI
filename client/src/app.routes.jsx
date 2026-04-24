@@ -34,9 +34,9 @@ const router = createBrowserRouter([
   {
     path: "/interview/:interviewId",
     element: (
-      // <ProtectedRoute>
+      <ProtectedRoute>
         <InterviewAIReport />
-      // </ProtectedRoute>
+      </ProtectedRoute>
     ),
   },
 ]);

@@ -30,9 +30,11 @@ export default function InterviewAIHome() {
     }
   };
   if(loading){
-    <main className="loading-screen">
-        <h1>Loading your interview plan...</h1>
-    </main>
+    return (
+      <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
+        <h1 className="text-2xl font-semibold animate-pulse">Loading your interview plan...</h1>
+      </main>
+    )
   }
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white">

@@ -16,7 +16,7 @@ export const registerAPI = async ({ username, email, password }) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    return error.response.data;
+    throw error;
   }
 };
 
@@ -33,7 +33,7 @@ export const loginAPI = async ({ email, password }) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    return error.response?.data || error.message;
+    throw error;
   }
 };
 
@@ -45,7 +45,7 @@ export const logoutAPI = async () => {
     return response.data;
   } catch (error) {
     console.log(error);
-    return error.response.data;
+    throw error;
   }
 };
 

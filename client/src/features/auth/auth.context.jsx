@@ -12,22 +12,20 @@
 //         </authContext.Provider>
 //     )
 // }
-import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+import { getMeAPI } from "./Services/auth.api.js";
 
-export const authContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const checkAuth = async () => {
+    setLoading(true);
     try {
-      const res = await axios.get("/api/auth/me", {
-        withCredentials: true,
-      });
-
-      setUser(res.data.user);
+      const data = await getMeAPI();
+      setUser(data.user);
     } catch (error) {
       setUser(null);
     } finally {
@@ -40,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{
         user,
         loading,
@@ -51,8 +49,7 @@ export const AuthProvider = ({ children }) => {
       }}
     >
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(authContext);
