@@ -6,7 +6,7 @@ const authRoutes = express.Router();
 
 authRoutes.post("/register", registerUserController);
 authRoutes.post("/login", loginUserController);
-authRoutes.post("/logout", logoutUserController);
+authRoutes.post("/logout",authMiddleware, logoutUserController);
 authRoutes.get("/me", authMiddleware, getMeController);
 
 

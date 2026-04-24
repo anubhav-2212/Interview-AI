@@ -3,9 +3,11 @@ import { useInterview } from "../hooks/useInterview.js";
 import { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../auth/hooks/auth.hooks.js";
 
 export default function InterviewAIHome() {
   const { loading, generateReport } = useInterview();
+  const { handleLogout } = useAuth();
   const resumeInputRef = useRef();
   const navigate = useNavigate();
   const [selfDescription, setSelfDescription] = useState("");
@@ -29,6 +31,20 @@ export default function InterviewAIHome() {
       );
     }
   };
+//   const handleLogout = async (e) => {
+//     e.preventDefault();
+//     try {
+//       await logoutAPI();
+//       toast.success("Logged out successfully!");
+//       navigate("/login", { replace: true });
+//     } catch (error) {
+//       console.log(error);
+//       toast.error(
+//         error.response?.data?.message || "Logout failed. Please try again.",
+//       );
+//     }
+//   };
+    
   if(loading){
     return (
       <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
@@ -44,19 +60,13 @@ export default function InterviewAIHome() {
             Interview<span className="text-indigo-400">AI</span>
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
+            {/* <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
               Dashboard
-            </button>
-            <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
-              Video Mock
-            </button>
-            <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
-              Call Mock
-            </button>
+            </button> */}
             <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
               Reports
             </button>
-            <button className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-400">
+            <button onClick={handleLogout} className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-400">
               Logout
             </button>
           </div>
