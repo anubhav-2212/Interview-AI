@@ -39,7 +39,7 @@ export const loginAPI = async ({ email, password }) => {
 
 export const logoutAPI = async () => {
   try {
-    const response = await api.get("/logout", {
+    const response = await api.post("/logout", {
       withCredentials: true,
     });
     return response.data;
