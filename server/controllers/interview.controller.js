@@ -86,9 +86,10 @@ export const getInterviewReportByIdController = async (req, res) => {
 
 
 export const generateResumePdfController = async (req, res) => {
-    const { interviewReportId } = req.params;
+    const { interviewId } = req.params;
+    // console.log("interviewId",interviewId);
 
-    const interviewReport = await InterviewReportModel.findById(interviewReportId)
+    const interviewReport = await InterviewReportModel.findById(interviewId)
 
     if (!interviewReport) {
         return res.status(404).json({
@@ -102,7 +103,7 @@ export const generateResumePdfController = async (req, res) => {
 
     res.set({
         "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`
+        "Content-Disposition": `attachment; filename=resume_${interviewId}.pdf`
     })
 
     res.send(pdfBuffer)

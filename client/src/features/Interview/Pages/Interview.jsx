@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useInterview } from "../hooks/useInterview.js";
 import { useParams } from "react-router";
 
+
 const NAV_ITEMS = [
   { id: "technical", label: "Technical Questions" },
   { id: "behavioral", label: "Behavioral Questions" },
@@ -75,8 +76,9 @@ const RoadMapDay = ({ day }) => (
 const Interview = () => {
   const [activeNav, setActiveNav] = useState("technical");
 
-  const { report, getReportById, loading } = useInterview();
+  const { report, getReportById, loading ,getResumePdf} = useInterview();
   const { interviewId } = useParams();
+
 
   useEffect(() => {
     if (interviewId) {
@@ -127,7 +129,16 @@ const Interview = () => {
                 {item.label}
               </button>
               
+             
             ))}
+
+              <button
+                onClick={() => getResumePdf(interviewId)}
+                className="w-full text-left px-4 py-3 rounded-xl transition bg-white/5 text-slate-300 hover:bg-white/10"
+              >
+                Download Resume
+              </button>
+              
           </div>
         </aside>
 

@@ -23,6 +23,6 @@ interviewRouter.get('/', authMiddleware, getAllInterviewReportsController)
  */
 interviewRouter.get('/report/:interviewId', authMiddleware, getInterviewReportByIdController)
 
-interviewRouter.get('/generate-resume-pdf/:interviewReportId', authMiddleware, generateResumePdfController);
+interviewRouter.get('/generate-resume-pdf/:interviewId', authMiddleware, generateResumePdfController);
 
 export default interviewRouter;
