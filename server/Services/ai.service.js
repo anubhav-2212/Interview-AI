@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 import { GoogleGenAI } from "@google/genai";
 import puppeteer from "puppeteer";
+import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY
@@ -191,7 +193,7 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
 
 }
 
-export default {generateInterviewReport,generateResumePdf};
+export  {generateInterviewReport,generateResumePdf};
 
 
 
