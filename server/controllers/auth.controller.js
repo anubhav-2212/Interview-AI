@@ -46,26 +46,22 @@ export const registerUserController = async (req, res) => {
 export const loginUserController = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password);
+    
         const user = await User.findOne({ email });
-        console.log(user);
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
-        console.log(isPasswordValid);
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "24h" });
-        console.log(token);
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
             sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000,
         });
-        console.log("User logged in successfully");
         res.status(200).json({
             success: true,
             message: "User logged in successfully",

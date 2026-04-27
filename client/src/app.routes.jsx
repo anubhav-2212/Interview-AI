@@ -5,6 +5,7 @@ import Home from "./features/Interview/Pages/Home.jsx";
 import InterviewAIReport from "./features/Interview/Pages/Interview.jsx";
 import ProtectedRoute from "./features/auth/Components/Protected.routes.jsx";
 import PublicRoute from "./features/auth/Components/Public.routes.jsx";
+import RecentReports from "./features/Interview/Pages/RecentReports.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+    path: "/reports",
+    element: (
+      <ProtectedRoute>
+      <RecentReports />
+      </ProtectedRoute>
+    ),
+  }
 ]);
 
 export default router;

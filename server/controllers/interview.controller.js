@@ -19,7 +19,7 @@ export const generateInterviewReportController = async (req, res) => {
             ...interviewReportByAI
 
         })
-        console.log(JSON.stringify(interviewReportByAI, null, 2));
+        // console.log(JSON.stringify(interviewReportByAI, null, 2));
         await interviewReport.save();
         return res.status(200).json({
             success: true,

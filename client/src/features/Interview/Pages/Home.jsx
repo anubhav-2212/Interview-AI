@@ -31,19 +31,7 @@ export default function InterviewAIHome() {
       );
     }
   };
-//   const handleLogout = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await logoutAPI();
-//       toast.success("Logged out successfully!");
-//       navigate("/login", { replace: true });
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(
-//         error.response?.data?.message || "Logout failed. Please try again.",
-//       );
-//     }
-//   };
+
     
   if(loading){
     return (
@@ -63,7 +51,7 @@ export default function InterviewAIHome() {
             {/* <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
               Dashboard
             </button> */}
-            <button className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
+            <button onClick={() => navigate("/reports")} className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10">
               Reports
             </button>
             <button onClick={handleLogout} className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-400">

@@ -25,7 +25,7 @@ export const useInterview = () => {
       const response = await generateInterviewReportApi({
         jobDescription,
         selfDescription,
-        resumeFile: resume,
+        resumeFile:resume,
       });
       setReport(response.data);
       console.log(response.data);
