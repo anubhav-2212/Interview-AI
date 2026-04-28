@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://interview-ai-ackend.onrender.com/api/v1/interview",
+  baseURL: import.meta.env.VITE_BACKEND_URL + "/api/v1/interview",
   withCredentials: true,
 });
 /**
