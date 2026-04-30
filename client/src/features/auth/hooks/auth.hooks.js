@@ -15,9 +15,7 @@ export const useAuth = () => {
     try {
       const data = await loginAPI({ email, password });
       setUser(data.user);
-      
-      
-      // console.log(data.user);
+      localStorage.setItem("wasLoggedIn", "true");
       return data.user;
     } catch (error) {
       console.log(error);
@@ -32,6 +30,7 @@ export const useAuth = () => {
     try {
       const data = await registerAPI({ username, email, password });
       setUser(data.user);
+      localStorage.setItem("wasLoggedIn", "true");
     } catch (error) {
       console.log(error);
       throw error;
@@ -43,8 +42,10 @@ export const useAuth = () => {
   const handleLogout = async () => {
     setLoading(true);
     try {
+      localStorage.removeItem("wasLoggedIn");
       const data = await logoutAPI();
       setUser(null);
+      return data.user;
     } catch (error) {
       console.log(error);
       throw error;

@@ -33,8 +33,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  
   useEffect(() => {
-    checkAuth();
+    const hasVisited = localStorage.getItem("wasLoggedIn");
+
+    if (hasVisited === "true") {
+      checkAuth();
+    }
   }, []);
 
   return (
