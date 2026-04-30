@@ -9,8 +9,8 @@ export default function InterviewAILogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
       await handleLogin({ email, password });
       toast.success("Logged in successfully!");
@@ -88,28 +88,13 @@ export default function InterviewAILogin() {
                 className="mt-2 w-full rounded-2xl border border-white/10 bg-white/5 p-4 outline-none focus:ring-2 focus:ring-indigo-400"
               />
             </div>
-            {/* <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-slate-300">
-                <input type="checkbox" className="rounded" /> Remember me
-              </label>
-              <button className="text-indigo-300 hover:text-indigo-200">
-                Forgot Password?
-              </button>
-            </div> */}
             <button
-              onClick={handleSubmit}
-              className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30"
-            >
-              Login
-            </button>
-            {/* <div className="grid grid-cols-2 gap-3">
-              <button className="rounded-2xl bg-white/5 hover:bg-white/10 py-3">
-                Google
-              </button>
-              <button className="rounded-2xl bg-white/5 hover:bg-white/10 py-3">
-                GitHub
-              </button>
-            </div> */}
+  onClick={handleSubmit}
+  disabled={loading}
+  className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
+>
+  {loading ? <Loader /> : "Login"}
+</button>
           <Link to="/register">  <p className="text-center text-slate-400 text-sm">
               Don't have an account?{" "}
               <span className="text-indigo-300 cursor-pointer">Create one</span>
