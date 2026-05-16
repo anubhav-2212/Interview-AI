@@ -93,8 +93,15 @@ export default function InterviewAILogin() {
   disabled={loading}
   className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
 >
+  
   {loading ? <Loader /> : "Login"}
+  
 </button>
+{loading && (
+  <p className="text-center text-sm text-slate-300 mt-3">
+    First login may take a few seconds while server wakes up.
+  </p>
+)}
           <Link to="/register">  <p className="text-center text-slate-400 text-sm">
               Don't have an account?{" "}
               <span className="text-indigo-300 cursor-pointer">Create one</span>
