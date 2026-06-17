@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../auth/hooks/auth.hooks.js";
+import { Loader } from "../../../components/Loader.jsx";
 
 export default function InterviewAIHome() {
   const { loading, generateReport } = useInterview();
@@ -36,7 +37,7 @@ export default function InterviewAIHome() {
   if(loading){
     return (
       <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
-        <h1 className="text-2xl font-semibold animate-pulse">Loading your interview plan...</h1>
+        <Loader message="Generating your personalized interview roadmap... This may take a minute." />
       </main>
     )
   }

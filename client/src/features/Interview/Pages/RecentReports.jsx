@@ -24,6 +24,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useInterview } from "../hooks/useInterview.js";
+import { Loader } from "../../../components/Loader.jsx";
 
 export default function Reports() {
   const { getReports, allReports, loading } = useInterview();
@@ -65,8 +66,8 @@ export default function Reports() {
 
         {/* Loading */}
         {loading && (
-          <div className="text-center text-slate-300 text-lg">
-            Loading reports...
+          <div className="py-20">
+            <Loader message="Fetching your recent interview reports..." />
           </div>
         )}
 

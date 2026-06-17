@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hooks/auth.hooks.js";
 import toast, { Toaster } from "react-hot-toast";
-
+import { InlineLoader } from "../../../components/Loader.jsx";
 export default function InterviewAIRegister() {
   const { loading, handleRegister } = useAuth();
   const navigate = useNavigate();
@@ -104,9 +104,10 @@ export default function InterviewAIRegister() {
             </label> */}
             <button
               onClick={handleSubmit}
-              className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30"
+              disabled={loading}
+              className="w-full flex justify-center items-center rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Create Account
+              {loading ? <InlineLoader message="Creating Account..." /> : "Create Account"}
             </button>
             {/* <div className="grid grid-cols-2 gap-3">
               <button className="rounded-2xl bg-white/5 hover:bg-white/10 py-3">

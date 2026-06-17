@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useAuth } from "../hooks/auth.hooks.js";
 import { Link,useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
-
+import { InlineLoader } from "../../../components/Loader.jsx";
 export default function InterviewAILogin() {
   const { loading, handleLogin ,isAuthenticated} = useAuth();
   const [email, setEmail] = useState("");
@@ -91,11 +91,9 @@ export default function InterviewAILogin() {
             <button
   onClick={handleSubmit}
   disabled={loading}
-  className="w-full rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
+  className="w-full flex justify-center items-center rounded-2xl bg-indigo-500 hover:bg-indigo-400 transition py-4 font-semibold text-lg shadow-lg shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
 >
-  
-  {loading ? <Loader /> : "Login"}
-  
+  {loading ? <InlineLoader message="Authenticating..." /> : "Login"}
 </button>
 {loading && (
   <p className="text-center text-sm text-slate-300 mt-3">

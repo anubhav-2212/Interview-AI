@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useInterview } from "../hooks/useInterview.js";
 import { useParams } from "react-router";
-
+import { Loader } from "../../../components/Loader.jsx";
 
 const NAV_ITEMS = [
   { id: "technical", label: "Technical Questions" },
@@ -89,9 +89,7 @@ const Interview = () => {
   if (loading || !report) {
     return (
       <main className="min-h-screen bg-slate-950 flex items-center justify-center text-white">
-        <h1 className="text-2xl font-semibold animate-pulse">
-          Loading your interview plan...
-        </h1>
+        <Loader message="Fetching your interview details..." />
       </main>
     );
   }
