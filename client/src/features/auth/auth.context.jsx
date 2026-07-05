@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }) => {
   
   useEffect(() => {
     const hasVisited = localStorage.getItem("wasLoggedIn");
-
     if (hasVisited === "true") {
       checkAuth();
     }
