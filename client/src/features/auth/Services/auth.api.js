@@ -9,9 +9,7 @@ export const registerAPI = async ({ username, email, password }) => {
     const response = await api.post(
       "/register",
       { username, email, password },
-      {
-        withCredentials: true,
-      },
+     
     );
     return response.data;
   } catch (error) {
@@ -25,9 +23,7 @@ export const loginAPI = async ({ email, password }) => {
     const response = await api.post(
       "/login",
       { email, password },
-      {
-        withCredentials: true,
-      },
+      
     );
     console.log(response.data);
     return response.data;
@@ -39,9 +35,7 @@ export const loginAPI = async ({ email, password }) => {
 
 export const logoutAPI = async () => {
   try {
-    const response = await api.post("/logout", {
-      withCredentials: true,
-    });
+    const response = await api.post("/logout");
     return response.data;
   } catch (error) {
     console.log(error);
@@ -51,9 +45,7 @@ export const logoutAPI = async () => {
 
 export const getMeAPI = async () => {
   try {
-    const response = await api.get("/me", {
-      withCredentials: true,
-    });
+    const response = await api.get("/me");
     return response.data;
   } catch (error) {
     console.log(error);
