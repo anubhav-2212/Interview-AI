@@ -3,6 +3,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL + "/api/v1/auth",
   withCredentials: true,
 });
+//ec2 url addedd
 
 export const registerAPI = async ({ username, email, password }) => {
   try {
