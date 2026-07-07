@@ -25,8 +25,8 @@ export const registerUserController = async (req, res) => {
         await user.save();
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: false,
+            sameSite: "lax",
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.status(201).json({
@@ -58,8 +58,8 @@ export const loginUserController = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "24h" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: false,
+            sameSite: "lax",
             maxAge: 24 * 60 * 60 * 1000,
         });
         res.status(200).json({
