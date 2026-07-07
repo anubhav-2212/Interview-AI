@@ -45,6 +45,7 @@ app.get("/health", (req, res) => {
         success: true,
         status: "healthy",
         timestamp: new Date().toISOString(),
-        uptime: process.uptime()
+        uptime: process.uptime(),
+        "message": "InterviewAI  is running"
     });
 });
